@@ -12,9 +12,11 @@
 # For developpers, if you modify this theme, put your images in `source/images` folder and
 # use grunt task `build` to synchronize assets
 
-baseURL = "https://example.org/"
+# baseURL = "http://localhost:5500/docs/"
+baseURL = "https://scrymee.github.io/mypage/"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
+publishDir = "docs"
 title = "Hugo tranquilpeak theme"
 theme = "hugo-tranquilpeak-theme"
 disqusShortname = "hugo-tranquilpeak-theme"
