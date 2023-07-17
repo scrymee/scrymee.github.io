@@ -77,7 +77,6 @@ jobs:
            ---
            <!--more-->
            
-           ![Tranquilpeak](/img/showcase.png)
            {{< toc >}}
 
            $POST_BODY
