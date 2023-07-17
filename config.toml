@@ -14,7 +14,7 @@
 
 # baseURL = "http://localhost:5500/docs/"
 baseURL = "https://scrymee.github.io/mypage/"
-languageCode = "en-us"
+languageCode = "ja"
 defaultContentLanguage = "ja"
 publishDir = "docs"
 title = "日々の日記"
@@ -46,12 +46,12 @@ canonifyurls = true
 # Author
 # ------
 [author]
-  name = "Firstname Lastname"
-  bio = "Super bio with markdown support **COOL**"
-  job = "Your job title"
-  location = "France"
+  name = "Shohei"
+  bio = "よろしくおねがいします🚀"
+  job = "システムエンジニア"
+  location = "Japan"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
-  gravatarEmail = "thibaud.lepretre@gmail.com"
+  gravatarEmail = "example@example.com"
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
   picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
