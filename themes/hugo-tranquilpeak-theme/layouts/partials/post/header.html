@@ -6,22 +6,9 @@
       </a>
     </h1>
   {{ else }}
-    <h1 class="post-title mystyle">
+    <h1 class="post-title">
       {{ $.Title }}
     </h1>
   {{ end }}
   {{ partial "post/meta.html" . }}
 </div>
-
-<style>
-
-  h1.mystyle {
-    color: #fff;
-    background-color: #333;
-    letter-spacing: 0.8rem;
-    text-align: center;
-    padding:6vh 0;
-    margin-bottom: 10px!important;
-
-  }
-</style>
