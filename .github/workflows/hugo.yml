@@ -2,11 +2,8 @@
 name: Deploy Hugo site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+  issues:
+    types: [labeled]
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -29,6 +26,7 @@ defaults:
 jobs:
   # Build job
   build:
+    if: ${{ github.event.label.name == 'publish' }}
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.114.0
@@ -39,7 +37,7 @@ jobs:
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
       - name: Install Dart Sass
         run: sudo snap install dart-sass
-      - name: Checkout
+      - name: リポジトリの環境を仮想環境に作成（CheckOut）
         uses: actions/checkout@v3
         with:
           submodules: recursive
@@ -48,7 +46,33 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
-      - name: Build with Hugo
+      - name: DEBUG
+        env:
+          DEBUG: ${{ toJson(github.event) }}
+        run: echo "$DEBUG"
+      - name: Hugoの記法に合わせてファイルを生成（Generate Post）
+        env:
+          POST_TITLE: ${{ github.event.issue.title }}
+          POST_BODY: ${{ github.event.issue.body }}
+          POST_ID: ${{ github.event.issue.id }}
+          POST_CATEGORY: ${{ github.event.issue.labels[0].name }}
+        run: |
+           YEAR=`date "+%Y"`
+           MONTH=`date "+%m"`
+           mkdir -p content/posts/$YEAR/$MONTH
+           cd content/posts/$YEAR/$MONTH
+           cat > $POST_ID.md <<EOF
+           ---
+           draft: false
+           title: $POST_TITLE
+           date: ${{ github.event.issue.updated_at }}
+           type: post
+           slug: $POST_ID
+           category: ["${POST_CATEGORY}"]
+           ---
+
+           $POST_BODY
+      - name: 静的ファイルの生成(Build with Hugo)
         env:
           # For maximum backward compatibility with Hugo modules
           HUGO_ENVIRONMENT: production
@@ -56,20 +80,15 @@ jobs:
         run: |
           hugo \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./docs
-
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+            --baseURL "${{ steps.pages.outputs.base_url }}/"   
+      - name: docs以下のファイルをpush
+        env: 
+          EMAIL: ${{secrets.EMAIL}}
+        run: |
+           date > genereate.txt
+           git config user.name scrymee
+           git config user.email "$EMAIL"
+           git add ./docs
+           git status
+           git commit -m 'update static pages'
+           git push
