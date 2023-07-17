@@ -68,7 +68,6 @@ jobs:
            draft: false
            title: $POST_TITLE
            date: ${{ github.event.issue.updated_at }}
-           type: post
            slug: $POST_ID
            category: ["${POST_CATEGORY}"]
            ---
