@@ -70,7 +70,15 @@ jobs:
            date: ${{ github.event.issue.updated_at }}
            slug: $POST_ID
            category: ["${POST_CATEGORY}"]
+           thumbnailImagePosition: "top"
+           thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/welcome-to-tranquilpeak/city-750.jpg
+           coverImage: //d1u9biwaxjngwg.cloudfront.net/welcome-to-tranquilpeak/city.jpg
+           metaAlignment: center
            ---
+           <!--more-->
+           
+           ![Tranquilpeak](/img/showcase.png)
+           {{< toc >}}
 
            $POST_BODY
       - name: 静的ファイルの生成(Build with Hugo)
