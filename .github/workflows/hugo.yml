@@ -89,6 +89,7 @@ jobs:
            git config user.name scrymee
            git config user.email "$EMAIL"
            git add ./docs
+           git add ./content
            git status
            git commit -m 'update static pages'
            git push
