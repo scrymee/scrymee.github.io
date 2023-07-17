@@ -60,6 +60,8 @@ jobs:
            YEAR=`date "+%Y"`
            MONTH=`date "+%m"`
            mkdir -p content/posts/$YEAR/$MONTH
+           touch content/posts/$YEAR/_index.html
+           touch content/posts/$YEAR/$MONTH/_index.html
            cd content/posts/$YEAR/$MONTH
            cat > $POST_ID.md <<EOF
            ---
