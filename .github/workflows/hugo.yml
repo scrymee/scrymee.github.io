@@ -26,7 +26,6 @@ defaults:
 jobs:
   # Build job
   build:
-    if: ${{ github.event.label.name == 'publish' }}
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.114.0
