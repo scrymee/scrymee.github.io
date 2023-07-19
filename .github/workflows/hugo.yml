@@ -3,7 +3,7 @@ name: Deploy Hugo site to Pages
 
 on:
   issues:
-    types: [labeled、unlabeled]
+    types: [labeled, unlabeled]
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -26,6 +26,7 @@ defaults:
 jobs:
   # Build job
   build:
+    if: ${{ github.event.label.name == 'publish' }}
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.114.0
