@@ -3,7 +3,7 @@ name: Deploy Hugo site to Pages
 
 on:
   issues:
-    types: [labeled]
+    types: [labeled、unlabeled]
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -50,7 +50,17 @@ jobs:
         env:
           DEBUG: ${{ toJson(github.event) }}
         run: echo "$DEBUG"
+      - name: unlabeled
+        if: ${{ github.event.action == 'unlabeled'}}
+        env: 
+          POST_ID: ${{ github.event.issue.id }}
+        run: |
+          find . -name $POST_ID.md 
+          find . -name $POST_ID.md | xargs rm
+          find . -name $POST_ID.md 
+          echo 'end'
       - name: Hugoの記法に合わせてファイルを生成（Generate Post）
+        if: ${{ github.event.action == 'labeled'}}
         env:
           POST_TITLE: ${{ github.event.issue.title }}
           POST_BODY: ${{ github.event.issue.body }}
@@ -75,6 +85,7 @@ jobs:
            coverImage: //d1u9biwaxjngwg.cloudfront.net/welcome-to-tranquilpeak/city.jpg
            metaAlignment: center
            ---
+           「$POST_TITLE」に関しての考えをまとめました。
            <!--more-->
            
            {{< toc >}}
