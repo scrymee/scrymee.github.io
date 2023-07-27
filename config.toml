@@ -17,7 +17,7 @@ baseURL = "https://scrymee.github.io"
 languageCode = "ja"
 defaultContentLanguage = "ja"
 publishDir = "docs"
-title = "日々の日記"
+title = "Tech Life ~ Camp & Sauna & Codingヾ(・∀・ )"
 theme = "hugo-tranquilpeak-theme"
 disqusShortname = "hugo-tranquilpeak-theme"
 # googleAnalytics = "UA-123-45"
@@ -47,14 +47,14 @@ canonifyurls = true
 # ------
 [author]
   name = "Shohei"
-  bio = "よろしくおねがいします🚀"
+  bio = "scrymee Blog🚀 Enjoy Step by Step"
   job = "システムエンジニア"
   location = "Japan"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
-  gravatarEmail = "example@example.com"
+  # gravatarEmail = "example@example.com"
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
-  picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
+  picture = "icon.png"
   # Your Twitter username without the @. E.g : thibaudlepretre
   # twitter = "thibaudlepretre"
   # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
