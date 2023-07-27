@@ -54,7 +54,7 @@ canonifyurls = true
   # gravatarEmail = "example@example.com"
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
-  picture = "icon.png"
+  picture = "https://raw.githubusercontent.com/scrymee/scrymee.github.io/main/icon.png"
   # Your Twitter username without the @. E.g : thibaudlepretre
   # twitter = "thibaudlepretre"
   # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
